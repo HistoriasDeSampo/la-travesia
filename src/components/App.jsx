@@ -18,16 +18,29 @@ function App() {
 
   let [gameDone, setGameDone] = React.useState(false);
 
+  function mapComplete(state){
+    console.log(state);
+    setGameDone((gameDone) =>{
+      return state
+    })
+  }
+
   function mapDataTranslate(mapValue) {
     let cellStyle={
-      fontSize: "60px",
+      fontSize: "40px",
       fontWeight: "bold",
       color: "grey"
     }
     if (mapValue=== "B"){
       cellStyle["color"] = "#ff9900"
+      return ( < div style={cellStyle}> {
+          "`º´"
+        } < /div>);
     }else if (mapValue=== "W"){
-      cellStyle["color"] = "#3399ff"
+      cellStyle["color"] = "white"
+      return ( < div style={cellStyle}> {
+          "~"
+        } < /div>);
     }else if (mapValue=== "."){
       cellStyle["color"] = "grey"
     }else{
@@ -45,7 +58,7 @@ function App() {
 
     return (
       <div className="game">
-      <p>{gameDone=== true ? <p>Done</p> : null}</p>
+      <div>{gameDone? <p>Done</p> : null}</div>
       <div>{boats.map((boat, index) => {
         return(
           <div key={"boat"+index}className="boat">
@@ -67,7 +80,7 @@ function App() {
         mapDataTranslate
       }
       mapComplete={
-        setGameDone
+        mapComplete
       }
       nonInteractable = {
         ["0,5", "3,3"]

@@ -67,14 +67,13 @@ function IsoMap(props) {
         }
       }
       shipsOnCols[i] = ships
-      result &= currentMap[i][numCols -1]=== ships && (ships + water=== numRows)
+      result &= parseInt(currentMap[i][numCols])=== ships && (ships + water=== numRows)
     }
 
-
-    for (var r = 0; r < numCols - 1; r++) {
+    for (var c = 0; c < numCols; c++) {
       let ships = 0
       let water = 0
-      for (var c = 0; c < numRows; c++) {
+      for (var r = 0; r < numRows; r++) {
         if (currentMap[r][c]=== "B"){
           ships += 1;
         }else if(currentMap[r][c]=== "W"){
@@ -82,7 +81,7 @@ function IsoMap(props) {
         }
       }
       shipsOnCols[c] = ships
-      result &= (currentMap[numCols - 1][c]=== ships) && (ships + water=== numCols)
+      result &= parseInt(currentMap[numRows][c])=== ships && (ships + water=== numCols)
     }
 
     result &= checkShips()
@@ -94,7 +93,7 @@ function IsoMap(props) {
 
     newMap = setNewCell(newMap,row, col);
 
-    props.mapComplete(checkGame);
+    props.mapComplete(checkGame());
 
     setCurrentMap((oldMap) => {
       return (oldMap.map((thisRow, rowIndex) => {

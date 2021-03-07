@@ -20,6 +20,7 @@ body{
 .wrapper .grid {
   display: inline-block;
   vertical-align: middle;
+  user-select: none;
 
 }
 .grid .row {
@@ -63,7 +64,15 @@ margin: 0
   padding: 0 10px;
   color: white;
 
-  background-color: #ff9900;
+  background-color: #663300;
   border-radius: 0px 10px 10px 0px;
 
+}
+
+.ship{
+  background-color: #663300;
+}
+
+.sea{
+    background-color: #00ccff;
 }

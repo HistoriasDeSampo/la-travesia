@@ -2,7 +2,7 @@ import React from "react";
 import Row from "./Row"
 
 function Grid(props) {
-  let cellSize = 100;
+  let cellSize = 70;
   let xAngle = 60;
   let zAngle = 45;
   let color = "rgba(0,0,0,0.2)"

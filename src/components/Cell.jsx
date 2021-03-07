@@ -16,9 +16,12 @@ function Cell(props){
   function handleClick(){
     props.actionOnCell(props.rowIndex, props.colIndex);
   }
+  let className = props.isInside && props.isInteractable ? 'cell interactable' : 'cell'
+  className += props.cellValue == "B" ? ' ship' : ''
+  className += props.cellValue == "W" ? ' sea' : ''
 
   return(
-    <div className={props.isInside && props.isInteractable ? 'cell interactable' : 'cell'} onClick={props.isInteractable ? handleClick: null} style={cellStyle}>
+    <div className={className} onClick={props.isInteractable && props.isInside? handleClick: null} style={cellStyle}>
       <div className="cellContent" style={noPerspective}>
         {props.mapDataTranslate(props.cellValue)}
       </div>

@@ -3,12 +3,10 @@ import Row from "./Row"
 
 function Grid(props) {
   let cellSize = 70;
-  let xAngle = 60;
-  let zAngle = 45;
   let color = "rgba(0,0,0,0.2)"
   let gridStyle = {
     transformOrigin: "center",
-    transform: "rotate3d(1, 0, 0, " + xAngle + "deg) rotate3d(0, 0, 1, " + zAngle + "deg)",
+    transform: "rotate3d(1, 0, 0, 60deg) rotate3d(0, 0, 1, 45deg)",
     border: "3px solid",
     width: (cellSize * (props.currentMap[0].length - 1)) + "px",
     height: (cellSize * (props.currentMap.length - 1)) + "px",
@@ -26,12 +24,7 @@ function Grid(props) {
       rowIndex = {
         index
       }
-      xAngle = {
-        xAngle
-      }
-      zAngle = {
-        zAngle
-      }
+
       cellSize = {
         cellSize
       }
@@ -48,21 +41,29 @@ function Grid(props) {
       mapDataTranslate={
         props.mapDataTranslate
       }
-      nonInteractable={
-        props.nonInteractable
+
+      currentMap={
+        props.currentMap
       }
 
-      shipsOnCols={
-        props.shipsOnCols
-      }
-      shipsOnRows={
-        props.shipsOnRows
+      setGameState={
+        props.setGameState
       }
 
+      setCurrentMap={
+        props.setCurrentMap
+      }
+      getCellStyleClass={
+        props.getCellStyleClass
+      }
+
+      isInteractable={
+        props.isInteractable
+      }
 
       />);
     }
-
+    //props.isInteractable("R")
     return ( <
       div className = "grid"
       style = {

@@ -1,0 +1,44 @@
+.game{
+  text-align: center;
+}
+
+.grid .row .cell.interactable:hover {
+  padding: 0px;
+  border: solid 2px aqua;
+}
+
+.grid .row .cell {
+  padding: 2px;
+}
+
+
+.boat{
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px;
+  padding: 0 10px;
+  color: white;
+
+  background-color: #663300;
+  border-radius: 0px 10px 10px 0px;
+
+}
+
+.ship{
+  background-color: #663300;
+}
+
+.sea{
+    background-color: #00ccff;
+}
+
+.number.left .cellContent div{
+  margin-left: 30%;
+  margin-top: 10%;
+}
+
+.number.right .cellContent div{
+  margin-right: 30%;
+  margin-top: 10%;
+}

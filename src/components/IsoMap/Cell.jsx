@@ -5,7 +5,7 @@ function Cell(props){
     height: props.cellSize + "px",
   }
   let noPerspective= {
-      transform: "rotate3d(0,  0, 1, -" + props.zAngle + "deg) rotate3d(0,  1, 0, -" + props.xAngle + "deg) translate(0px, -" + props.cellSize * 4/3  +"px) ",
+      transform: "rotate3d(0,  0, 1, -45deg) rotate3d(0,  1, 0, -60deg) translate(0px, -" + props.cellSize * 4/3  +"px) ",
       width: props.cellSize * 3 + "px",
       height: props.cellSize * 3 + "px",
       overflow: "visible",
@@ -14,14 +14,12 @@ function Cell(props){
   }
 
   function handleClick(){
-    props.actionOnCell(props.rowIndex, props.colIndex);
+    props.actionOnCell(props.currentMap, props.rowIndex, props.colIndex, props.setGameState, props.setCurrentMap);
   }
-  let className = props.isInside && props.isInteractable ? 'cell interactable' : 'cell'
-  className += props.cellValue == "B" ? ' ship' : ''
-  className += props.cellValue == "W" ? ' sea' : ''
+
 
   return(
-    <div className={className} onClick={props.isInteractable && props.isInside? handleClick: null} style={cellStyle}>
+    <div className={'cell ' + props.getCellStyleClass(props.currentMap, props.rowIndex, props.colIndex)} onClick={props.interactable ? handleClick: null} style={cellStyle}>
       <div className="cellContent" style={noPerspective}>
         {props.mapDataTranslate(props.cellValue)}
       </div>

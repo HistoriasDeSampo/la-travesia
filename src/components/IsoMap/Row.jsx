@@ -4,8 +4,6 @@ import Cell from "./Cell";
 function Row(props) {
 
   function cellMapper(cell, index) {
-    let shipsOnCol=index < props.shipsOnCols.lenght ? props.shipsOnCols[index] : 0
-    let shipsOnRow=props.rowIndex < props.shipsOnRows.lenght ? props.shipsOnRows[index] : 0
 
     return ( < Cell key = {
         "cell" + props.rowIndex + "" + index
@@ -16,12 +14,7 @@ function Row(props) {
       colIndex = {
         index
       }
-      xAngle = {
-        props.xAngle
-      }
-      zAngle = {
-        props.zAngle
-      }
+
       cellSize = {
         props.cellSize
       }
@@ -31,21 +24,26 @@ function Row(props) {
       actionOnCell = {
         props.actionOnCell
       }
-      isInteractable = {
-        !props.nonInteractable.includes(props.rowIndex+","+ index)
+      interactable = {
+        props.isInteractable(props.currentMap[props.rowIndex][index])
       }
-      isInside={
-        index < props.innerCols && props.isInnerRow
-      }
-      shipsOnRow={
-        shipsOnRow
-      }
-      shipsOnCol={
-        shipsOnCol
-      }
-
       mapDataTranslate = {
         props.mapDataTranslate
+      }
+      currentMap={
+        props.currentMap
+      }
+
+      setGameState={
+        props.setGameState
+      }
+
+      setCurrentMap={
+        props.setCurrentMap
+      }
+
+      getCellStyleClass={
+        props.getCellStyleClass
       }
 
       />);

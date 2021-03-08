@@ -1,0 +1,36 @@
+.wrapper {
+  text-align: center;
+}
+
+.wrapper::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 100%;
+}
+.wrapper .grid {
+  display: inline-block;
+  vertical-align: middle;
+  user-select: none;
+
+}
+.grid .row {
+  font-size: 0;
+  white-space: nowrap;
+}
+
+.grid .row .cell {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+}
+
+
+.grid .row .cell .cellContent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

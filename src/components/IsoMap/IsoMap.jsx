@@ -17,6 +17,10 @@ function IsoMap(props) {
     h = {
       props.h
     }
+
+    cellSize={
+      props.cellSize
+    }
     currentMap = {
       currentMap
     }

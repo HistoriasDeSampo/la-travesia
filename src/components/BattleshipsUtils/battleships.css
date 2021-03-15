@@ -1,5 +1,6 @@
 .game{
   text-align: center;
+  position: relative;
 }
 
 .grid .row .cell.interactable:hover {
@@ -10,6 +11,13 @@
 .grid .row .cell {
   padding: 2px;
 }
+
+.gameDone{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 
 
 .boat{
@@ -22,7 +30,9 @@
 
   background-color: #663300;
   border-radius: 0px 10px 10px 0px;
-
+  margin-top: 40px;
+  margin-bottom: 50px;
+  user-select: none;
 }
 
 .ship{
@@ -34,11 +44,11 @@
 }
 
 .number.left .cellContent div{
-  margin-left: 30%;
+  margin-left: 25%;
   margin-top: 10%;
 }
 
 .number.right .cellContent div{
-  margin-right: 30%;
+  margin-right: 25%;
   margin-top: 10%;
 }

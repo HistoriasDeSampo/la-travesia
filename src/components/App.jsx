@@ -1,62 +1,57 @@
 import React from "react";
-import IsoMap from "./IsoMap/IsoMap";
+import GameFrame from "./GameFrame";
 import * as Battleships from "./BattleshipsUtils/BattleshipsUtils.js";
-import "./BattleshipsUtils/battleships.css"
+import "./app.css"
+import Content from "../content.json";
+
 
 function App() {
 
-  const [startingMap, boats]=Battleships.generateMap([3,1,2,1,0,3], [2,1,2,1,1,3], [[0,5,"W"], [3,3,"B"]], [3, 2, 1]);
+  let [activeSections, setActiveSections] = React.useState(0);
 
-  let [gameDone, setGameDone] = React.useState(false);
+  function getSectionClass(i){
+    if (i == activeSections){
+      return ("section show");
+    }else if(i < activeSections){
+      return ("section");
+    }else{
+      return ("section hide");
+    }
+  }
 
-    return (
-      <div className="game">
-      <div>{gameDone? <p>Done</p> : null}</div>
-      <div>{boats.map((boat, index) => {
-        return(
-          <div key={"boat"+index}className="boat">
-            {boat}
-          </div>
-        )
-      })}</div>
-      <
-      IsoMap w = {
-        startingMap[0].length
-      }
-      h = {
-        startingMap.length
-      }
+  function paragraphMapper(text){
+    return (<p> {text} </p>);
+  }
 
-      startingMap = {
-        startingMap
-      }
+  function sectionMapper(section, index){
+    return(
+    <div className={getSectionClass(index)}>
+      {section.p.map(paragraphMapper)}
+      {section.hasOwnProperty("game")?
+      <GameFrame
+            rowData={section.game.rowData}
+            colData={section.game.colData}
+            hints={section.game.hints}
+            ships={section.game.ships}
+            cellSize={section.game.cellSize}
+            notifyGameDone={
+              () => {
+                setActiveSections(index + 1);
+              }
+            }
+      /> :null}
+      </div>
+);
+  }
 
-      mapDataTranslate = {
-        Battleships.mapDataTranslate
-      }
 
-      mapComplete={
-        setGameDone
-      }
 
-      handleActionOnCell={
-        Battleships.handleActionOnCell
-      }
+return(
+  <div className="content">
+  {Content.map(sectionMapper)}
+      </div>
+);
 
-      setGameState={
-        setGameDone
-      }
-      getCellStyleClass={
-        Battleships.getCellStyleClass
-      }
-
-      isInteractable={
-        Battleships.isInteractable
-      }
-      />
-
-      < /div >
-    );
   }
 
   export default App;

@@ -1,8 +1,9 @@
 import React from "react";
 import GameFrame from "./GameFrame";
-import * as Battleships from "./BattleshipsUtils/BattleshipsUtils.js";
+import parse from "html-react-parser";
 import "./app.css"
 import Content from "../content.json";
+
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
   let [activeSections, setActiveSections] = React.useState(0);
 
   function getSectionClass(i){
-    if (i == activeSections){
+    if (i === activeSections){
       return ("section show");
     }else if(i < activeSections){
       return ("section");
@@ -19,16 +20,16 @@ function App() {
     }
   }
 
-  function paragraphMapper(text){
-    return (<p> {text} </p>);
+  function paragraphMapper(text, index){
+    return (<p key={"p" + index + "-" + parseInt(Math.random() * 10)}> {parse(text)} </p>);
   }
 
   function sectionMapper(section, index){
     return(
-    <div className={getSectionClass(index)}>
+    <div className={getSectionClass(index)} key={"section" + index}>
       {section.p.map(paragraphMapper)}
       {section.hasOwnProperty("game")?
-      <GameFrame
+      <GameFrame key={"game" + index}
             rowData={section.game.rowData}
             colData={section.game.colData}
             hints={section.game.hints}

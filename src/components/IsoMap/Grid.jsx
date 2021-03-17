@@ -6,7 +6,7 @@ function Grid(props) {
   let color = "rgba(0,0,0,0.2)"
   let gridStyle = {
     transformOrigin: "center",
-    transform: "rotate3d(1, 0, 0, 45deg) rotate3d(0, 0, 1, 45deg)",
+    transform: "rotate3d(1, 0, 0, 55deg) rotate3d(0, 0, 1, 45deg)",
     border: "3px solid",
     width: (cellSize * (props.currentMap[0].length - 1)) + "px",
     height: (cellSize * (props.currentMap.length - 1)) + "px",

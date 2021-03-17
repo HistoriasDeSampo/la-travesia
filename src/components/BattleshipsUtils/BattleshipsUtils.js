@@ -1,6 +1,7 @@
 let shipsOnCols = []
 let shipsOnRows = []
 
+
 function mapDataTranslate(mapValue, currentMap) {
   let cellStyle = {
     fontSize: "40px",
@@ -8,168 +9,317 @@ function mapDataTranslate(mapValue, currentMap) {
     color: "grey"
   }
   if (isShip(mapValue)) {
-    cellStyle["color"] = "#ff9900"
-    return ( < div style = {
-        cellStyle
-      } > {
-        "`º´"
-      } < /div>);
-  }
-  else if (isWater(mapValue)) {
-    cellStyle["color"] = "white"
-    return ( < div style = {
-        cellStyle
-      } > {
-        "~"
-      } < /div>);
+    let type = mapValue.split(" ")[0];
+    let src = "imgs/ships/" + type + ".png";
+    return ( < img src = {
+        src
+      }
+
+      alt={mapValue + " image"}/>);
     }
-    else if (mapValue === ".") {
-      cellStyle["color"] = "grey"
-    } else {
-      cellStyle["color"] = "#000"
+    else if (isWater(mapValue)) {
+      cellStyle["color"] = "white"
       return ( < div style = {
           cellStyle
         } > {
-          mapValue.replace(" F", "")
+          "~"
         } < /div>);
-    }
-}
-
-function isShip(code){
-  let codeSplitted = code.split(" ");
-  return (codeSplitted[0] === "B");
-}
-
-function isWater(code){
-  let codeSplitted = code.split(" ");
-  return (codeSplitted[0] === "W")
-}
-
-function isNumber(code){
-  let codeSplitted = code.split(" ");
-  return (!isNaN(codeSplitted[0]))
-}
-
-function isInteractable(code){
-  let codeSplitted = code.split(" ");
-  return (codeSplitted[codeSplitted.length - 1] !== "F")
-}
-
-function updateShipsOnCols(col, amount){
-  shipsOnCols[col] = amount;
-  return (shipsOnCols);
-}
-function updateShipsOnRows(row, amount){
-  shipsOnRows[row] = amount;
-  return (shipsOnRows);
-}
-
-function checkShips(currentMap) {
-  let numRows = currentMap.length - 1;
-  let numCols = currentMap[0].length;
-
-  let result = true;
-  for (var i = 0; i < numRows; i++) {
-    for (var j = 0; j < numCols; j++) {
-      let arround = false;
-      if (isShip(currentMap[i][j])) {
-        if (0 < i - 1 && 0 < j - 1) {
-          arround = arround || isShip(currentMap[i - 1][j - 1])
+      }
+      else if (mapValue === ".") {
+        cellStyle["color"] = "grey"
+      } else {
+        cellStyle["color"] = "#000"
+        return ( < div style = {
+            cellStyle
+          } > {
+            mapValue.replace(" F", "")
+          } < /div>);
         }
-        if (0 < i - 1 && j + 1 < numCols) {
-          arround = arround || isShip(currentMap[i - 1][j + 1])
-        }
-        if (i + 1 < numRows && 0 < j - 1) {
-          arround = arround || isShip(currentMap[i + 1][j - 1])
-        }
-        if (i + 1 < numRows && j + 1 < numCols) {
-          arround = arround || isShip(currentMap[i + 1][j + 1])
-        }
-        result &= !arround
-
       }
 
-    }
-  }
-  return (result)
-}
-
-function checkGame(currentMap) {
-  let numRows = currentMap.length - 1;
-  let numCols = currentMap[0].length -1;
-
-  let result = true;
-  for (var i = 0; i < numRows; i++) {
-    let ships = 0
-    let water = 0
-    for (var j = 0; j < numCols; j++) {
-      if (isShip(currentMap[i][j])){
-        ships += 1;
-      }else if(isWater(currentMap[i][j])){
-        water += 1;
+      function isShip(code) {
+        let codeSplitted = code.split(" ");
+        return (codeSplitted[0][0] === "B");
       }
-    }
-    updateShipsOnRows(i, ships);
-    result &= parseInt(currentMap[i][numCols])=== ships && (ships + water=== numRows)
-  }
 
-  for (var c = 0; c < numCols; c++) {
-    let ships = 0
-    let water = 0
-    for (var r = 0; r < numRows; r++) {
-      if (isShip(currentMap[r][c])){
-        ships += 1;
-      }else if(isWater(currentMap[r][c])){
-        water += 1;
+      function isWater(code) {
+        let codeSplitted = code.split(" ");
+        return (codeSplitted[0] === "W")
       }
-    }
-    updateShipsOnCols(c, ships);
-    result &= parseInt(currentMap[numRows][c])=== ships && (ships + water=== numCols)
-  }
-  result &= checkShips(currentMap)
-  return(result);
-}
 
-function handleActionOnCell(currentMap, row, col, setGameState, setCurrentMap){
-  let newMap =  setNewCell(currentMap,row, col);
+      function isNumber(code) {
+        let codeSplitted = code.split(" ");
+        return (!isNaN(codeSplitted[0]))
+      }
 
-  setGameState(checkGame(currentMap));
-
-  setCurrentMap((oldMap) => {
-    return (oldMap.map((thisRow, rowIndex) => {
-      return (thisRow.map((thisCell, colIndex) => {
-        if (thisCell !== newMap[rowIndex][colIndex]) {
-          return (newMap[row][col])
+      function isSingle(code) {
+        code = code.split(" ")[0];
+        if (isShip(code)) {
+          return (code[1] === "0")
         } else {
-          return (thisCell)
+          return false;
+        }
+      }
+
+      function isInteractable(code) {
+        let codeSplitted = code.split(" ");
+        return (codeSplitted[codeSplitted.length - 1] !== "F")
+      }
+
+      function isVertical(code) {
+        code = code.split(" ")[0];
+        if (isShip(code)) {
+          return (code[1] === "0" || code[2] === "C")
+        } else {
+          return false;
+        }
+      }
+
+      function isHorizontal(code) {
+        ;
+        code = code.split(" ")[0];
+        if (isShip(code)) {
+          return (code[1] === "0" || code[2] === "R")
+
+        } else {
+          return false;
+        }
+      }
+
+      function updateShipsOnCols(col, amount) {
+        shipsOnCols[col] = amount;
+        return (shipsOnCols);
+      }
+
+      function updateShipsOnRows(row, amount) {
+        shipsOnRows[row] = amount;
+        return (shipsOnRows);
+      }
+
+      function checkShips(currentMap) {
+        let numRows = currentMap.length - 1;
+        let numCols = currentMap[0].length;
+
+        let result = true;
+        for (var i = 0; i < numRows; i++) {
+          for (var j = 0; j < numCols; j++) {
+            let arround = false;
+            if (isShip(currentMap[i][j])) {
+              if (0 < i - 1 && 0 < j - 1) {
+                arround = arround || isShip(currentMap[i - 1][j - 1])
+              }
+              if (0 < i - 1 && j + 1 < numCols) {
+                arround = arround || isShip(currentMap[i - 1][j + 1])
+              }
+              if (i + 1 < numRows && 0 < j - 1) {
+                arround = arround || isShip(currentMap[i + 1][j - 1])
+              }
+              if (i + 1 < numRows && j + 1 < numCols) {
+                arround = arround || isShip(currentMap[i + 1][j + 1])
+              }
+              result &= !arround
+
+            }
+
+          }
+        }
+        return (result)
+      }
+
+      function checkGame(currentMap) {
+        let numRows = currentMap.length - 1;
+        let numCols = currentMap[0].length - 1;
+
+        let result = true;
+        for (var i = 0; i < numRows; i++) {
+          let ships = 0
+          let water = 0
+          for (var j = 0; j < numCols; j++) {
+            if (isShip(currentMap[i][j])) {
+              ships += 1;
+            } else if (isWater(currentMap[i][j])) {
+              water += 1;
+            }
+          }
+          updateShipsOnRows(i, ships);
+          result &= parseInt(currentMap[i][numCols]) === ships && (ships + water === numRows)
         }
 
-      }));
-    }));
-  })
+        for (var c = 0; c < numCols; c++) {
+          let ships = 0
+          let water = 0
+          for (var r = 0; r < numRows; r++) {
+            if (isShip(currentMap[r][c])) {
+              ships += 1;
+            } else if (isWater(currentMap[r][c])) {
+              water += 1;
+            }
+          }
+          updateShipsOnCols(c, ships);
+          result &= parseInt(currentMap[numRows][c]) === ships && (ships + water === numCols)
+        }
+        result &= checkShips(currentMap)
+        return (result);
+      }
 
-}
+      function handleActionOnCell(currentMap, row, col, setGameState, setCurrentMap) {
+        let newMap = setNewCell(currentMap, row, col);
 
-function setNewCell(newMap, row, col) {
-  if (newMap[row][col] === ".") {
-    newMap[row][col] = "W";
-  } else if (isWater(newMap[row][col])) {
-    newMap[row][col] = "B";
-  } else {
-    newMap[row][col] = ".";
+        setGameState(checkGame(currentMap));
+
+        setCurrentMap((oldMap) => {
+          return (oldMap.map((thisRow, rowIndex) => {
+            return (thisRow.map((thisCell, colIndex) => {
+              if (thisCell !== newMap[rowIndex][colIndex]) {
+                return (newMap[row][col])
+              } else {
+                return (thisCell)
+              }
+
+            }));
+          }));
+        })
+
+      }
+
+      function getBoatCellHorizontal(map, row, col) {
+        if (isInteractable(map[row][col]) && isHorizontal(map[row][col])) {
+          let left, right = false;
+          left = col > 0 && isShip(map[row][col - 1]);
+          right = col + 1 < map[0].length && isShip(map[row][col + 1]);
+          if (left && right) {
+            return ("B2R");
+          } else if (left && !right) {
+            return ("B1R");
+          } else if (!left && right) {
+            return ("B3R");
+          } else {
+            return ("B0");
+          }
+        } else {
+          return (map[row][col])
+        }
+      }
+
+      function getBoatCellVertical(map, row, col) {
+        if (isInteractable(map[row][col]) && isVertical(map[row][col])) {
+          let up, down = false;
+          up = row > 0 && isShip(map[row - 1][col]);
+          down = row + 1 < map.length && isShip(map[row + 1][col]);
+          if (up && down) {
+            return ("B2C");
+          } else if (up && !down) {
+            return ("B1C");
+          } else if (!up && down) {
+            return ("B3C");
+          } else {
+            return ("B0");
+          }
+        } else {
+          return (map[row][col])
+        }
+      }
+
+      function setBoatCell(newMap, row, col) {
+        let left, right, up, down = false;
+
+
+
+        left = col > 0 && (isHorizontal(newMap[row][col - 1]));
+        right = col + 1 < newMap[0].length && (isHorizontal(newMap[row][col + 1]));
+        up = row > 0 && (isVertical(newMap[row - 1][col]));
+        down = row + 1 < newMap.length && (isVertical(newMap[row + 1][col]));
+
+        if (isVertical(newMap[row][col])) {
+          left = false;
+          right = false;
+        } else if (isHorizontal(newMap[row][col])) {
+          up = false;
+          down = false;
+        }
+
+
+        if (left && right) {
+          newMap[row][col] = "B2R";
+          newMap[row][col - 1] = getBoatCellHorizontal(newMap, row, col - 1);
+          newMap[row][col + 1] = getBoatCellHorizontal(newMap, row, col + 1);
+        } else if (left && !right) {
+          newMap[row][col] = "B1R";
+          newMap[row][col - 1] = getBoatCellHorizontal(newMap, row, col - 1);
+        } else if (!left && right) {
+          newMap[row][col] = "B3R";
+          newMap[row][col + 1] = getBoatCellHorizontal(newMap, row, col + 1);
+        } else {
+
+          if (up && down) {
+            newMap[row][col] = "B2C";
+            newMap[row - 1][col] = getBoatCellVertical(newMap, row - 1, col);
+            newMap[row + 1][col] = getBoatCellVertical(newMap, row + 1, col);
+          } else if (up && !down) {
+            newMap[row][col] = "B1C";
+            newMap[row - 1][col] = getBoatCellVertical(newMap, row - 1, col);
+          } else if (!up && down) {
+            newMap[row][col] = "B3C";
+            newMap[row + 1][col] = getBoatCellVertical(newMap, row + 1, col);
+          } else {
+            newMap[row][col] = "B0";
+          }
+        }
+
+        return newMap
+      }
+
+      function setNewCell(newMap, row, col) {
+        if (newMap[row][col] === ".") {
+          newMap[row][col] = "W";
+
+        } else if (isWater(newMap[row][col])) {
+          newMap = setBoatCell(newMap, row, col);
+        } else {
+          newMap[row][col] = ".";
+          if (col > 0 && isShip(newMap[row][col - 1])) {
+
+            setBoatCell(newMap, row, col - 1)
+            if (isSingle(newMap[row][col - 1])) {
+            setBoatCell(newMap, row, col - 1)
+          }
+        }
+        if (col + 1 < newMap[0].length && isShip(newMap[row][col + 1])) {
+
+          setBoatCell(newMap, row, col + 1)
+          if (isSingle(newMap[row][col + 1])) {
+          setBoatCell(newMap, row, col + 1)
+        }
+      }
+      if (row > 0 && isShip(newMap[row - 1][col])) {
+
+        setBoatCell(newMap, row - 1, col)
+        if (isSingle(newMap[row - 1][col])) {
+        setBoatCell(newMap, row - 1, col)
+      }
+    }
+    if (row + 1 < newMap.length && isShip(newMap[row + 1][col])) {
+
+      setBoatCell(newMap, row + 1, col)
+      if (isSingle(newMap[row + 1][col])) {
+      setBoatCell(newMap, row + 1, col)
+    }
+
   }
-  return (newMap)
+
+}
+return (newMap)
 }
 
 
-function getCellStyleClass(currentMap, row, col){
+function getCellStyleClass(currentMap, row, col) {
 
   let className = isInteractable(currentMap[row][col]) ? 'interactable' : '';
   className += isShip(currentMap[row][col]) ? ' ship ' : ''
   className += isWater(currentMap[row][col]) ? ' sea ' : ''
   className += isNumber(currentMap[row][col]) ? ' number ' : ''
-  className += row === currentMap.length -1 ? 'left' : ''
-  className += col === currentMap[0].length -1 ? 'right' : ''
+  className += row === currentMap.length - 1 ? 'left' : ''
+  className += col === currentMap[0].length - 1 ? 'right' : ''
   return (className)
 }
 
@@ -180,22 +330,22 @@ function repeatStringNumTimes(string, times) {
     return "";
 }
 
-function generateMap(rowData, colData, sureCells, boatsData){
+function generateMap(rowData, colData, sureCells, boatsData) {
   let map = []
   let boats = []
-  for (var i = 0; i < rowData.length; i++) {
+  for (var r = 0; r < rowData.length; r++) {
     let row = []
-    for (var j = 0; j< colData.length; j++) {
-      row[j] = "."
+    for (var c = 0; c < colData.length; c++) {
+      row[c] = "."
     }
-    row[colData.length] =  rowData[i] + " F"
-    map[i] = row
+    row[colData.length] = rowData[r] + " F"
+    map[r] = row
   }
   map[rowData.length] = colData.map((x) => (x + " F"))
 
-  for (var i = 0; i < sureCells.length; i++) {
+  for (var k = 0; k < sureCells.length; k++) {
 
-    map[sureCells[i][0]][sureCells[i][1]] = sureCells[i][2] + " F"
+    map[sureCells[k][0]][sureCells[k][1]] = sureCells[k][2] + " F"
   }
 
   for (var i = 0; i < boatsData.length; i++) {
@@ -208,4 +358,14 @@ function generateMap(rowData, colData, sureCells, boatsData){
   return [map, boats];
 }
 
-export {mapDataTranslate, checkGame, setNewCell, shipsOnCols, shipsOnRows, handleActionOnCell, getCellStyleClass, isInteractable, generateMap};
+export {
+  mapDataTranslate,
+  checkGame,
+  setNewCell,
+  shipsOnCols,
+  shipsOnRows,
+  handleActionOnCell,
+  getCellStyleClass,
+  isInteractable,
+  generateMap
+};

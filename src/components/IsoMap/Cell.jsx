@@ -5,7 +5,7 @@ function Cell(props){
     height: props.cellSize + "px",
   }
   let noPerspective= {
-      transform: "rotate3d(0,  0, 1, -45deg) rotate3d(0,  1, 0, -45deg) translate(0px, -" + props.cellSize * 4/3  +"px) ",
+      transform: "rotate3d(0,  0, 1, -45deg) rotate3d(0,  1, 0, -55deg) translate(0px, -" + props.cellSize * 4/3  +"px) ",
       width: props.cellSize * 3 + "px",
       height: props.cellSize * 3 + "px",
       overflow: "visible",

@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/la-travesia/static/css/main.6f00664f.chunk.css",
-    "main.js": "/la-travesia/static/js/main.b15b16b8.chunk.js",
-    "main.js.map": "/la-travesia/static/js/main.b15b16b8.chunk.js.map",
+    "main.css": "/la-travesia/static/css/main.09204a9f.chunk.css",
+    "main.js": "/la-travesia/static/js/main.b8a1e49c.chunk.js",
+    "main.js.map": "/la-travesia/static/js/main.b8a1e49c.chunk.js.map",
     "runtime-main.js": "/la-travesia/static/js/runtime-main.44dc76e8.js",
     "runtime-main.js.map": "/la-travesia/static/js/runtime-main.44dc76e8.js.map",
     "static/js/2.d4574d85.chunk.js": "/la-travesia/static/js/2.d4574d85.chunk.js",
     "static/js/2.d4574d85.chunk.js.map": "/la-travesia/static/js/2.d4574d85.chunk.js.map",
     "index.html": "/la-travesia/index.html",
-    "static/css/main.6f00664f.chunk.css.map": "/la-travesia/static/css/main.6f00664f.chunk.css.map",
+    "static/css/main.09204a9f.chunk.css.map": "/la-travesia/static/css/main.09204a9f.chunk.css.map",
     "static/js/2.d4574d85.chunk.js.LICENSE.txt": "/la-travesia/static/js/2.d4574d85.chunk.js.LICENSE.txt",
     "static/media/B0.3c0cd386.gif": "/la-travesia/static/media/B0.3c0cd386.gif",
     "static/media/B1C.8e7b9a23.gif": "/la-travesia/static/media/B1C.8e7b9a23.gif",
@@ -22,7 +22,7 @@
   "entrypoints": [
     "static/js/runtime-main.44dc76e8.js",
     "static/js/2.d4574d85.chunk.js",
-    "static/css/main.6f00664f.chunk.css",
-    "static/js/main.b15b16b8.chunk.js"
+    "static/css/main.09204a9f.chunk.css",
+    "static/js/main.b8a1e49c.chunk.js"
   ]
 }

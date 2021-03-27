@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/la-travesia/static/css/main.ea09c66c.chunk.css",
+    "main.js": "/la-travesia/static/js/main.c86f2c3d.chunk.js",
+    "main.js.map": "/la-travesia/static/js/main.c86f2c3d.chunk.js.map",
+    "runtime-main.js": "/la-travesia/static/js/runtime-main.44dc76e8.js",
+    "runtime-main.js.map": "/la-travesia/static/js/runtime-main.44dc76e8.js.map",
+    "static/js/2.9c7b39cb.chunk.js": "/la-travesia/static/js/2.9c7b39cb.chunk.js",
+    "static/js/2.9c7b39cb.chunk.js.map": "/la-travesia/static/js/2.9c7b39cb.chunk.js.map",
+    "index.html": "/la-travesia/index.html",
+    "static/css/main.ea09c66c.chunk.css.map": "/la-travesia/static/css/main.ea09c66c.chunk.css.map",
+    "static/js/2.9c7b39cb.chunk.js.LICENSE.txt": "/la-travesia/static/js/2.9c7b39cb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.44dc76e8.js",
+    "static/js/2.9c7b39cb.chunk.js",
+    "static/css/main.ea09c66c.chunk.css",
+    "static/js/main.c86f2c3d.chunk.js"
+  ]
+}

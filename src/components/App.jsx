@@ -49,6 +49,7 @@ function App() {
 
 return(
   <div className="content">
+  <h1>La Travesía</h1>
   {Content.map(sectionMapper)}
       </div>
 );

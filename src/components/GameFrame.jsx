@@ -1,6 +1,6 @@
 import React from "react";
 import IsoMap from "./IsoMap/IsoMap";
-import * as Battleships from "./BattleshipsUtils/BattleshipsUtils.js";
+import * as Battleships from "./BattleshipsUtils/BattleshipsUtils.jsx";
 import "./BattleshipsUtils/battleships.css"
 
 function GameFrame(props){

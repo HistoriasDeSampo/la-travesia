@@ -1,36 +1,39 @@
-#root{
+#root {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.content{
+
+.content {
   margin: 20px;
   max-width: 600px;
   text-align: justify;
 }
 
-p{
+p {
   margin-top: 20px;
   text-indent: 20px;
 }
-.game{
+
+.game {
   margin-bottom: 75px;
 }
 
 @keyframes show {
-     0% {
-       opacity: 0;
-     }
-     100% {
-       opacity: 1;
-     }
-   }
+  0% {
+    opacity: 0;
+  }
 
-.hide{
+  100% {
+    opacity: 1;
+  }
+}
+
+.hide {
   display: none;
 }
 
-.show{
+.show {
   animation: show 1s ease;
 }

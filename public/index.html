@@ -11,7 +11,23 @@
     <title>React App</title>
   </head>
   <body>
+    <style media="screen">
+    #preloadedImages {
+      width: 0px;
+      height: 0px;
+      display: inline;
+      background-image: url("imgs/ships/B0.gif");
+      background-image: url("imgs/ships/B1R.gif");
+      background-image: url("imgs/ships/B1C.gif");
+      background-image: url("imgs/ships/B2R.gif");
+      background-image: url("imgs/ships/B2C.gif");
+      background-image: url("imgs/ships/B3R.gif");
+      background-image: url("imgs/ships/B3C.gif");
+    }
+    </style>
     <script src="../src/index.js" type="text/jsx"></script>
+    <div id=preloadedImages>
+    </div>
     <div id="root"></div>
   </body>
 </html>

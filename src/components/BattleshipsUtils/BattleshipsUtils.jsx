@@ -1,3 +1,4 @@
+import React from "react";
 let shipsOnCols = []
 let shipsOnRows = []
 
@@ -10,7 +11,7 @@ function mapDataTranslate(mapValue, currentMap) {
   }
   if (isShip(mapValue)) {
     let type = mapValue.split(" ")[0];
-    let src = "imgs/ships/" + type + ".png";
+    let src = "imgs/ships/" + type + ".gif";
     return ( < img src = {
         src
       }

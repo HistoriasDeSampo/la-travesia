@@ -1,7 +1,24 @@
-import React from "react";
+import React from "react"
+import B0 from "./ships/B0.gif"
+import B1C from "./ships/B1C.gif"
+import B2C from "./ships/B2C.gif"
+import B3C from "./ships/B3C.gif"
+import B1R from "./ships/B1R.gif"
+import B2R from "./ships/B2R.gif"
+import B3R from "./ships/B3R.gif"
+
 let shipsOnCols = []
 let shipsOnRows = []
 
+let ships = {
+  "B0": B0,
+  "B1C":B1C,
+  "B2C":B2C,
+  "B3C":B3C,
+  "B1R":B1R,
+  "B2R":B2R,
+  "B3R":B3R
+}
 
 function mapDataTranslate(mapValue, currentMap) {
   let cellStyle = {
@@ -13,7 +30,7 @@ function mapDataTranslate(mapValue, currentMap) {
     let type = mapValue.split(" ")[0];
     let src = "imgs/ships/" + type + ".gif";
     return ( < img src = {
-        src
+        ships[type]
       }
 
       alt={mapValue + " image"}/>);

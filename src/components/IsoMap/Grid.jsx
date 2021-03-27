@@ -7,7 +7,6 @@ function Grid(props) {
   let gridStyle = {
     transformOrigin: "center",
     transform: "rotate3d(1, 0, 0, 55deg) rotate3d(0, 0, 1, 45deg)",
-    border: "3px solid",
     width: (cellSize * (props.currentMap[0].length - 1)) + "px",
     height: (cellSize * (props.currentMap.length - 1)) + "px",
     backgroundImage: "linear-gradient(" + color + " 2px, transparent 1px), linear-gradient(90deg," + color + " 2px, transparent 1px)",

@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/la-travesia/static/css/main.09204a9f.chunk.css",
-    "main.js": "/la-travesia/static/js/main.b8a1e49c.chunk.js",
-    "main.js.map": "/la-travesia/static/js/main.b8a1e49c.chunk.js.map",
-    "runtime-main.js": "/la-travesia/static/js/runtime-main.44dc76e8.js",
-    "runtime-main.js.map": "/la-travesia/static/js/runtime-main.44dc76e8.js.map",
-    "static/js/2.d4574d85.chunk.js": "/la-travesia/static/js/2.d4574d85.chunk.js",
-    "static/js/2.d4574d85.chunk.js.map": "/la-travesia/static/js/2.d4574d85.chunk.js.map",
+    "main.css": "/la-travesia/static/css/main.ebb020ce.chunk.css",
+    "main.js": "/la-travesia/static/js/main.e5c5b1e3.chunk.js",
+    "main.js.map": "/la-travesia/static/js/main.e5c5b1e3.chunk.js.map",
+    "runtime-main.js": "/la-travesia/static/js/runtime-main.e68030cd.js",
+    "runtime-main.js.map": "/la-travesia/static/js/runtime-main.e68030cd.js.map",
+    "static/js/2.cbdf9a62.chunk.js": "/la-travesia/static/js/2.cbdf9a62.chunk.js",
+    "static/js/2.cbdf9a62.chunk.js.map": "/la-travesia/static/js/2.cbdf9a62.chunk.js.map",
     "index.html": "/la-travesia/index.html",
-    "static/css/main.09204a9f.chunk.css.map": "/la-travesia/static/css/main.09204a9f.chunk.css.map",
-    "static/js/2.d4574d85.chunk.js.LICENSE.txt": "/la-travesia/static/js/2.d4574d85.chunk.js.LICENSE.txt",
+    "static/css/main.ebb020ce.chunk.css.map": "/la-travesia/static/css/main.ebb020ce.chunk.css.map",
+    "static/js/2.cbdf9a62.chunk.js.LICENSE.txt": "/la-travesia/static/js/2.cbdf9a62.chunk.js.LICENSE.txt",
     "static/media/B0.3c0cd386.gif": "/la-travesia/static/media/B0.3c0cd386.gif",
     "static/media/B1C.8e7b9a23.gif": "/la-travesia/static/media/B1C.8e7b9a23.gif",
     "static/media/B1R.4fc3caf2.gif": "/la-travesia/static/media/B1R.4fc3caf2.gif",
@@ -17,12 +17,13 @@
     "static/media/B2R.4fd901ec.gif": "/la-travesia/static/media/B2R.4fd901ec.gif",
     "static/media/B3C.b72590cb.gif": "/la-travesia/static/media/B3C.b72590cb.gif",
     "static/media/B3R.e711b3e8.gif": "/la-travesia/static/media/B3R.e711b3e8.gif",
+    "static/media/atkinson.css": "/la-travesia/static/media/atkinson-hyperlegible-regular-102-webfont.fdc50173.woff2",
     "static/media/spacegrotesk.css": "/la-travesia/static/media/spacegrotesk-regular-webfont.373f2a7c.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.44dc76e8.js",
-    "static/js/2.d4574d85.chunk.js",
-    "static/css/main.09204a9f.chunk.css",
-    "static/js/main.b8a1e49c.chunk.js"
+    "static/js/runtime-main.e68030cd.js",
+    "static/js/2.cbdf9a62.chunk.js",
+    "static/css/main.ebb020ce.chunk.css",
+    "static/js/main.e5c5b1e3.chunk.js"
   ]
 }

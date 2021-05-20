@@ -12,12 +12,12 @@ let shipsOnRows = []
 
 let ships = {
   "B0": B0,
-  "B1C":B1C,
-  "B2C":B2C,
-  "B3C":B3C,
-  "B1R":B1R,
-  "B2R":B2R,
-  "B3R":B3R
+  "B1C": B1C,
+  "B2C": B2C,
+  "B3C": B3C,
+  "B1R": B1R,
+  "B2R": B2R,
+  "B3R": B3R
 }
 
 function mapDataTranslate(mapValue, currentMap) {
@@ -33,7 +33,10 @@ function mapDataTranslate(mapValue, currentMap) {
         ships[type]
       }
 
-      alt={mapValue + " image"}/>);
+      alt = {
+        mapValue + " image"
+      }
+      />);
     }
     else if (isWater(mapValue)) {
       cellStyle["color"] = "white"
@@ -94,7 +97,6 @@ function mapDataTranslate(mapValue, currentMap) {
       }
 
       function isHorizontal(code) {
-        ;
         code = code.split(" ")[0];
         if (isShip(code)) {
           return (code[1] === "0" || code[2] === "R")
@@ -248,14 +250,15 @@ function mapDataTranslate(mapValue, currentMap) {
         up = row > 0 && (isVertical(newMap[row - 1][col]));
         down = row + 1 < newMap.length && (isVertical(newMap[row + 1][col]));
 
-        if (isVertical(newMap[row][col])) {
-          left = false;
-          right = false;
-        } else if (isHorizontal(newMap[row][col])) {
+
+        if (isHorizontal(newMap[row][col]) && !isSingle(newMap[row][col])) {
           up = false;
           down = false;
         }
-
+        else if (isVertical(newMap[row][col]) && !isSingle(newMap[row][col])) {
+          left = false;
+          right = false;
+        }
 
         if (left && right) {
           newMap[row][col] = "B2R";
@@ -268,7 +271,6 @@ function mapDataTranslate(mapValue, currentMap) {
           newMap[row][col] = "B3R";
           newMap[row][col + 1] = getBoatCellHorizontal(newMap, row, col + 1);
         } else {
-
           if (up && down) {
             newMap[row][col] = "B2C";
             newMap[row - 1][col] = getBoatCellVertical(newMap, row - 1, col);
@@ -299,91 +301,90 @@ function mapDataTranslate(mapValue, currentMap) {
 
             setBoatCell(newMap, row, col - 1)
             if (isSingle(newMap[row][col - 1])) {
-            setBoatCell(newMap, row, col - 1)
+              setBoatCell(newMap, row, col - 1)
+            }
+          }
+          if (col + 1 < newMap[0].length && isShip(newMap[row][col + 1])) {
+
+            setBoatCell(newMap, row, col + 1)
+            if (isSingle(newMap[row][col + 1])) {
+              setBoatCell(newMap, row, col + 1)
+            }
+          }
+          if (row > 0 && isShip(newMap[row - 1][col])) {
+            setBoatCell(newMap, row - 1, col)
+            if (isSingle(newMap[row - 1][col])) {
+              setBoatCell(newMap, row - 1, col)
+            }
+          }
+          if (row + 1 < newMap.length && isShip(newMap[row + 1][col])) {
+
+            setBoatCell(newMap, row + 1, col)
+            if (isSingle(newMap[row + 1][col])) {
+              setBoatCell(newMap, row + 1, col)
+            }
+
+          }
+
+        }
+        return (newMap)
+      }
+
+
+      function getCellStyleClass(currentMap, row, col) {
+
+        let className = isInteractable(currentMap[row][col]) ? 'interactable' : '';
+        className += isShip(currentMap[row][col]) ? ' ship ' : ''
+        className += isWater(currentMap[row][col]) ? ' sea ' : ''
+        className += isNumber(currentMap[row][col]) ? ' number ' : ''
+        className += row === currentMap.length - 1 ? 'left' : ''
+        className += col === currentMap[0].length - 1 ? 'right' : ''
+        return (className)
+      }
+
+      function repeatStringNumTimes(string, times) {
+        if (times > 0)
+          return string.repeat(times);
+        else
+          return "";
+      }
+
+      function generateMap(rowData, colData, sureCells, boatsData) {
+        let map = []
+        let boats = []
+        for (var r = 0; r < rowData.length; r++) {
+          let row = []
+          for (var c = 0; c < colData.length; c++) {
+            row[c] = "."
+          }
+          row[colData.length] = rowData[r] + " F"
+          map[r] = row
+        }
+        map[rowData.length] = colData.map((x) => (x + " F"))
+
+        for (var k = 0; k < sureCells.length; k++) {
+
+          map[sureCells[k][0]][sureCells[k][1]] = sureCells[k][2] + " F"
+        }
+
+        for (var i = 0; i < boatsData.length; i++) {
+          for (var j = 0; j < boatsData[i]; j++) {
+            let str = "· ";
+            str = repeatStringNumTimes(str, i)
+            boats.push(str + "·")
           }
         }
-        if (col + 1 < newMap[0].length && isShip(newMap[row][col + 1])) {
-
-          setBoatCell(newMap, row, col + 1)
-          if (isSingle(newMap[row][col + 1])) {
-          setBoatCell(newMap, row, col + 1)
-        }
+        return [map, boats];
       }
-      if (row > 0 && isShip(newMap[row - 1][col])) {
 
-        setBoatCell(newMap, row - 1, col)
-        if (isSingle(newMap[row - 1][col])) {
-        setBoatCell(newMap, row - 1, col)
-      }
-    }
-    if (row + 1 < newMap.length && isShip(newMap[row + 1][col])) {
-
-      setBoatCell(newMap, row + 1, col)
-      if (isSingle(newMap[row + 1][col])) {
-      setBoatCell(newMap, row + 1, col)
-    }
-
-  }
-
-}
-return (newMap)
-}
-
-
-function getCellStyleClass(currentMap, row, col) {
-
-  let className = isInteractable(currentMap[row][col]) ? 'interactable' : '';
-  className += isShip(currentMap[row][col]) ? ' ship ' : ''
-  className += isWater(currentMap[row][col]) ? ' sea ' : ''
-  className += isNumber(currentMap[row][col]) ? ' number ' : ''
-  className += row === currentMap.length - 1 ? 'left' : ''
-  className += col === currentMap[0].length - 1 ? 'right' : ''
-  return (className)
-}
-
-function repeatStringNumTimes(string, times) {
-  if (times > 0)
-    return string.repeat(times);
-  else
-    return "";
-}
-
-function generateMap(rowData, colData, sureCells, boatsData) {
-  let map = []
-  let boats = []
-  for (var r = 0; r < rowData.length; r++) {
-    let row = []
-    for (var c = 0; c < colData.length; c++) {
-      row[c] = "."
-    }
-    row[colData.length] = rowData[r] + " F"
-    map[r] = row
-  }
-  map[rowData.length] = colData.map((x) => (x + " F"))
-
-  for (var k = 0; k < sureCells.length; k++) {
-
-    map[sureCells[k][0]][sureCells[k][1]] = sureCells[k][2] + " F"
-  }
-
-  for (var i = 0; i < boatsData.length; i++) {
-    for (var j = 0; j < boatsData[i]; j++) {
-      let str = "· ";
-      str = repeatStringNumTimes(str, i)
-      boats.push(str + "·")
-    }
-  }
-  return [map, boats];
-}
-
-export {
-  mapDataTranslate,
-  checkGame,
-  setNewCell,
-  shipsOnCols,
-  shipsOnRows,
-  handleActionOnCell,
-  getCellStyleClass,
-  isInteractable,
-  generateMap
-};
+      export {
+        mapDataTranslate,
+        checkGame,
+        setNewCell,
+        shipsOnCols,
+        shipsOnRows,
+        handleActionOnCell,
+        getCellStyleClass,
+        isInteractable,
+        generateMap
+      };

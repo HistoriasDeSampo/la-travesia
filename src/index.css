@@ -16,11 +16,12 @@ html{
 body{
     width: 100%;
   background-color: var(--white);
-  font-family: SpaceGrotesk;
+  font-family: atkinson;
 
 }
 
 h1{
+  font-family: SpaceGrotesk;
   font-size: min(10vw, 90px);
   color: var(--white);
   -webkit-text-stroke: 1.5px var(--yellow);
@@ -28,6 +29,7 @@ h1{
 }
 
 h2{
+  font-family: SpaceGrotesk;
   font-size: 80px;
   color: var(--black);
 

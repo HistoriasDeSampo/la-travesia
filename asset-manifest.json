@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/la-travesia/static/css/main.f3401a72.chunk.css",
-    "main.js": "/la-travesia/static/js/main.b693dbe2.chunk.js",
-    "main.js.map": "/la-travesia/static/js/main.b693dbe2.chunk.js.map",
+    "main.js": "/la-travesia/static/js/main.c5f8344e.chunk.js",
+    "main.js.map": "/la-travesia/static/js/main.c5f8344e.chunk.js.map",
     "runtime-main.js": "/la-travesia/static/js/runtime-main.e68030cd.js",
     "runtime-main.js.map": "/la-travesia/static/js/runtime-main.e68030cd.js.map",
     "static/js/2.cbdf9a62.chunk.js": "/la-travesia/static/js/2.cbdf9a62.chunk.js",
@@ -24,6 +24,6 @@
     "static/js/runtime-main.e68030cd.js",
     "static/js/2.cbdf9a62.chunk.js",
     "static/css/main.f3401a72.chunk.css",
-    "static/js/main.b693dbe2.chunk.js"
+    "static/js/main.c5f8344e.chunk.js"
   ]
 }

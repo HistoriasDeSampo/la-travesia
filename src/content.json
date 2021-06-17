@@ -150,15 +150,18 @@
       "- Si esa fuera la propiedad que hace a un mapa de Väino sencillo o dificil, si la presencia o ausencia de pistas fuera lo que nos permite determinar la complejidad que presenta resolver un mapa, le tendría que haber dado la razon antes. Usted afirmó que la Segunda Regla era lo que hacía a estos mapas sencillos. No obstante concluimos que no era esa característica pues mi objetivo es ejemplificar las tareas divinas en su generalidad, no esta en particular. De hecho, mire. Intente resolver este mapa. Tiene un elemento diferente al que usted propuso. Y le puedo asegurar que no me refiero a la cantidad de pistas... ¿Qué cree usted que lo hace ligeramente más complejo de resolver?"
     ],
     "game": {
-      "rowData": [0, 5, 0,4,2,3,2,3][3,2,3,2,4,1,2,2],
+      "rowData": [3,2,3,2,4,1,2,2],
       "colData": [0, 5, 0,4,2,3,2,3],
       "hints": [
-        [1, 6, "B1C"],
-        [5, 3, "B3R"]
+        [6, 1, "B1C"],
+        [3, 5, "B3C"]
       ],
       "ships": [3, 2, 1],
       "cellSize": 80
     }
+  },
+  {
+    "p": ["- ¡Es la escala!"]
   }
 
 

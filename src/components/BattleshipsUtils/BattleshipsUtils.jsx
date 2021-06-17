@@ -1,11 +1,12 @@
 import React from "react"
-import B0 from "./ships/B0.gif"
-import B1C from "./ships/B1C.gif"
-import B2C from "./ships/B2C.gif"
-import B3C from "./ships/B3C.gif"
-import B1R from "./ships/B1R.gif"
-import B2R from "./ships/B2R.gif"
-import B3R from "./ships/B3R.gif"
+import Sea from "./ships/sea.jpeg"
+import B0 from "./ships/B0.png"
+import B1C from "./ships/B1C.png"
+import B2C from "./ships/B2C.png"
+import B3C from "./ships/B3C.png"
+import B1R from "./ships/B1R.png"
+import B2R from "./ships/B2R.png"
+import B3R from "./ships/B3R.png"
 
 let shipsOnCols = []
 let shipsOnRows = []
@@ -28,7 +29,6 @@ function mapDataTranslate(mapValue, currentMap) {
   }
   if (isShip(mapValue)) {
     let type = mapValue.split(" ")[0];
-    let src = "imgs/ships/" + type + ".gif";
     return ( < img src = {
         ships[type]
       }
@@ -40,11 +40,9 @@ function mapDataTranslate(mapValue, currentMap) {
     }
     else if (isWater(mapValue)) {
       cellStyle["color"] = "white"
-      return ( < div style = {
-          cellStyle
-        } > {
-          "~"
-        } < /div>);
+
+      cellStyle["backgroundImage"] = Sea
+      return ( < div > < /div>);
       }
       else if (mapValue === ".") {
         cellStyle["color"] = "grey"
@@ -241,52 +239,54 @@ function mapDataTranslate(mapValue, currentMap) {
       }
 
       function setBoatCell(newMap, row, col) {
-        let left, right, up, down = false;
+
+        if (isInteractable(newMap[row][col])) {
+          let left, right, up, down = false;
+
+          left = col > 0 && (isHorizontal(newMap[row][col - 1]));
+          right = col + 1 < newMap[0].length && (isHorizontal(newMap[row][col + 1]));
+          up = row > 0 && (isVertical(newMap[row - 1][col]));
+          down = row + 1 < newMap.length && (isVertical(newMap[row + 1][col]));
 
 
-
-        left = col > 0 && (isHorizontal(newMap[row][col - 1]));
-        right = col + 1 < newMap[0].length && (isHorizontal(newMap[row][col + 1]));
-        up = row > 0 && (isVertical(newMap[row - 1][col]));
-        down = row + 1 < newMap.length && (isVertical(newMap[row + 1][col]));
-
-
-        if (isHorizontal(newMap[row][col]) && !isSingle(newMap[row][col])) {
-          up = false;
-          down = false;
-        }
-        else if (isVertical(newMap[row][col]) && !isSingle(newMap[row][col])) {
-          left = false;
-          right = false;
-        }
-
-        if (left && right) {
-          newMap[row][col] = "B2R";
-          newMap[row][col - 1] = getBoatCellHorizontal(newMap, row, col - 1);
-          newMap[row][col + 1] = getBoatCellHorizontal(newMap, row, col + 1);
-        } else if (left && !right) {
-          newMap[row][col] = "B1R";
-          newMap[row][col - 1] = getBoatCellHorizontal(newMap, row, col - 1);
-        } else if (!left && right) {
-          newMap[row][col] = "B3R";
-          newMap[row][col + 1] = getBoatCellHorizontal(newMap, row, col + 1);
-        } else {
-          if (up && down) {
-            newMap[row][col] = "B2C";
-            newMap[row - 1][col] = getBoatCellVertical(newMap, row - 1, col);
-            newMap[row + 1][col] = getBoatCellVertical(newMap, row + 1, col);
-          } else if (up && !down) {
-            newMap[row][col] = "B1C";
-            newMap[row - 1][col] = getBoatCellVertical(newMap, row - 1, col);
-          } else if (!up && down) {
-            newMap[row][col] = "B3C";
-            newMap[row + 1][col] = getBoatCellVertical(newMap, row + 1, col);
-          } else {
-            newMap[row][col] = "B0";
+          if (isHorizontal(newMap[row][col]) && !isSingle(newMap[row][col])) {
+            up = false;
+            down = false;
+          } else if (isVertical(newMap[row][col]) && !isSingle(newMap[row][col])) {
+            left = false;
+            right = false;
           }
-        }
 
-        return newMap
+          if (left && right) {
+            newMap[row][col] = "B2R";
+            newMap[row][col - 1] = getBoatCellHorizontal(newMap, row, col - 1);
+            newMap[row][col + 1] = getBoatCellHorizontal(newMap, row, col + 1);
+          } else if (left && !right) {
+            newMap[row][col] = "B1R";
+            newMap[row][col - 1] = getBoatCellHorizontal(newMap, row, col - 1);
+          } else if (!left && right) {
+            newMap[row][col] = "B3R";
+            newMap[row][col + 1] = getBoatCellHorizontal(newMap, row, col + 1);
+          } else {
+            if (up && down) {
+              newMap[row][col] = "B2C";
+              newMap[row - 1][col] = getBoatCellVertical(newMap, row - 1, col);
+              newMap[row + 1][col] = getBoatCellVertical(newMap, row + 1, col);
+            } else if (up && !down) {
+              newMap[row][col] = "B1C";
+              newMap[row - 1][col] = getBoatCellVertical(newMap, row - 1, col);
+            } else if (!up && down) {
+              newMap[row][col] = "B3C";
+              newMap[row + 1][col] = getBoatCellVertical(newMap, row + 1, col);
+            } else {
+              newMap[row][col] = "B0";
+            }
+          }
+
+          return newMap
+        }else{
+          return (newMap)
+        }
       }
 
       function setNewCell(newMap, row, col) {

@@ -68,6 +68,15 @@ p::selection {
   background: none;
 }
 
+i::selection{
+  color: var(--blue);
+  background: none;
+}
+
+i{
+  color: grey;
+}
+
 .bigger{
   font-size: 1.8em;
   line-height: 0.8em;

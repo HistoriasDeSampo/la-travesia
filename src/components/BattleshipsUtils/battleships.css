@@ -58,11 +58,15 @@
 }
 
 .ship{
-  background-color: var(--blue);
+  background-image: url("./ships/sea.jpeg");
+  background-position: center;
+  background-size: contain;
 }
 
 .sea{
-    background-color: var(--blue);
+    background-image: url("./ships/sea.jpeg");
+    background-position: center;
+    background-size: contain;
 }
 
 .grid{
